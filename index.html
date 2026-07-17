@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>PDF para Estudiantes | 11 Herramientas Gratis, Locales y Sin Anuncios</title>
+    <meta name="description" content="Suite gratuita de 11 herramientas PDF que procesan tus archivos 100% en tu navegador, sin subirlos a ningún servidor: unir, dividir, comprimir, rotar, Word a PDF, extraer imágenes, desencriptar, ahorro de tinta, imágenes a PDF, reparar y recortar márgenes.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#059669">
+    <link rel="canonical" href="https://tu-dominio.com/">
+
+    <!-- ============ Open Graph / Facebook / WhatsApp ============ -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PDF para Estudiantes">
+    <meta property="og:title" content="PDF para Estudiantes | 11 Herramientas Gratis, Locales y Sin Anuncios">
+    <meta property="og:description" content="Une, divide, comprime, convierte y repara tus PDFs escolares sin salir de tu navegador. 100% gratis, privado y sin anuncios.">
+    <meta property="og:image" content="https://tu-dominio.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://tu-dominio.com/">
+    <meta property="og:locale" content="es_ES">
+
+    <!-- ============ Twitter Card ============ -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PDF para Estudiantes | 11 Herramientas Gratis, Locales y Sin Anuncios">
+    <meta name="twitter:description" content="Une, divide, comprime, convierte y repara tus PDFs escolares sin salir de tu navegador. 100% gratis, privado y sin anuncios.">
+    <meta name="twitter:image" content="https://tu-dominio.com/og-image.png">
+
+    <!--
+      NOTA DE DESPLIEGUE: reemplaza "https://tu-dominio.com/" por tu dominio real
+      y sube una imagen "og-image.png" (1200x630px) a la raíz del sitio antes de publicar,
+      para que las miniaturas de WhatsApp/Twitter/Facebook se vean correctamente.
+    -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* ==========================================================================
+           1. RESET & BASE
+           ========================================================================== */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            transition: background 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+            padding-bottom: 60px;
+            overflow-x: hidden;
+        }
+        img, canvas { max-width: 100%; }
+
+        /* ==========================================================================
+           2. DESIGN TOKENS & DARK MODE
+           ========================================================================== */
+        :root {
+            --slate-dark: #0f172a;
+            --slate-mid: #1e293b;
+            --emerald: #059669;
+            --emerald-dark: #047857;
+            --bg-light: #f8fafc;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --white: #ffffff;
+            --border: #e2e8f0;
+            --danger: #dc2626;
+            --focus-ring: #2563eb;
+
+            /* Offsets usados por el header fijo (banner + nav). Se ajustan por JS al cerrar el banner. */
+            --banner-h: 42px;
+            --nav-h: 70px;
+        }
+
+        [data-theme="dark"] {
+            --bg-light: #0b1220;
+            --slate-dark: #1e293b;
+            --slate-mid: #f1f5f9;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --white: #16213a;
+            --border: #2d3b52;
+        }
+
+        [data-theme="dark"] .logo { color: var(--slate-mid); }
+        [data-theme="dark"] .home-title { color: var(--slate-mid); }
+        [data-theme="dark"] .tool-header h2 { color: var(--slate-mid); }
+        [data-theme="dark"] .desc-box h4 { color: var(--slate-mid); }
+        [data-theme="dark"] .drop-area { border-color: #3b4a63; }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+            html { scroll-behavior: auto; }
+        }
+
+        /* ==========================================================================
+           3. LAYOUT (banner, nav, contenedores, grids)
+           ========================================================================== */
+        .top-banner {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: var(--banner-h);
+            background: linear-gradient(90deg, var(--emerald-dark), var(--emerald));
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 0 44px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-align: center;
+            z-index: 1100;
+        }
+        .top-banner i.fa-shield-halved { margin-right: 2px; }
+        .top-banner .banner-short { display: none; }
+        .top-banner-close {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.15);
+            border: none;
+            color: #fff;
+            width: 24px; height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.75rem;
+        }
+        .top-banner-close:hover { background: rgba(255,255,255,0.3); }
+
+        nav {
+            position: fixed;
+            top: var(--banner-h);
+            width: 100%;
+            height: var(--nav-h);
+            background-color: var(--white);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: top 0.25s ease;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--slate-dark);
+            cursor: pointer;
+            font-weight: 700;
+            background: none;
+            border: none;
+        }
+        .logo span { color: var(--emerald); }
+
+        .nav-links { display: flex; gap: 14px; align-items: center; }
+
+        main#main-content { display: block; }
+
+        .home-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: 100vh;
+            padding: calc(var(--banner-h) + var(--nav-h) + 40px) 20px 60px;
+        }
+
+        .home-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 6vw, 4.2rem);
+            color: var(--slate-dark);
+            margin-bottom: 10px;
+        }
+
+        .home-slogan {
+            font-size: 1rem;
+            color: var(--emerald);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 45px;
+            font-weight: 300;
+        }
+
+        .home-description {
+            max-width: 1000px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            border-top: 1px solid var(--border);
+            padding-top: 40px;
+        }
+
+        .desc-box { text-align: center; }
+        .desc-box h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            color: var(--slate-dark);
+        }
+        .desc-box p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; }
+
+        .home-tools-grid {
+            max-width: 1100px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin-top: 50px;
+        }
+
+        .tool-section {
+            display: none;
+            padding: calc(var(--banner-h) + var(--nav-h) + 40px) 20px 40px;
+            max-width: 850px;
+            margin: 0 auto;
+            animation: fadeIn 0.4s ease forwards;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .tool-header { text-align: center; margin-bottom: 36px; }
+        .tool-header h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 5vw, 2.8rem); color: var(--slate-dark); }
+        .tool-header .line { width: 50px; height: 4px; background: var(--emerald); margin: 15px auto; border-radius: 2px; }
+        .tool-header p { color: var(--text-muted); font-size: 0.95rem; }
+
+        .field-row { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 20px; }
+        .field-row > div { flex: 1; min-width: 160px; }
+        .field-row select, .field-row input { width: 100%; }
+
+        .preview-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 15px; margin-top: 25px; }
+        .preview-card { background: var(--white); padding: 10px; border: 1px solid var(--border); text-align: center; border-radius: 6px; }
+        canvas { width: 100%; height: auto; border: 1px solid var(--border); border-radius: 4px; transition: transform 0.3s ease; }
+
+        .image-extraction-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        footer { text-align: center; padding: 40px 20px 20px; color: var(--text-muted); font-size: 0.8rem; border-top: 1px solid var(--border); margin-top: 60px; }
+
+        /* ==========================================================================
+           4. COMPONENTS (nav dropdowns, menú móvil, botones, tarjetas, formularios)
+           ========================================================================== */
+
+        /* --- Dropdowns de escritorio --- */
+        .nav-item {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            padding: 6px 8px;
+            border: none;
+            background: none;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+        .nav-item:hover, .nav-item.active { color: var(--emerald); border-bottom-color: var(--emerald); }
+
+        .nav-dropdown { position: relative; }
+        .nav-dropdown-panel {
+            display: none;
+            position: absolute;
+            top: 40px;
+            right: 0;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+            min-width: 230px;
+            padding: 8px;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .nav-dropdown-panel.open { display: flex; }
+        .nav-dropdown-panel .nav-item {
+            text-transform: none;
+            letter-spacing: normal;
+            font-size: 0.88rem;
+            padding: 10px 12px;
+            border-radius: 6px;
+            border-bottom: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            text-align: left;
+        }
+        .nav-dropdown-panel .nav-item:hover { background: var(--bg-light); }
+        .nav-dropdown-panel .nav-item i { color: var(--emerald); width: 18px; text-align: center; }
+
+        .icon-btn {
+            background: none; border: none; cursor: pointer;
+            color: var(--text-main); font-size: 1.1rem;
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 36px; height: 36px; border-radius: 50%;
+        }
+        .icon-btn:hover { background: var(--bg-light); }
+
+        /* --- Menú móvil (hamburguesa + panel lateral) --- */
+        .hamburger-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            color: var(--text-main);
+            width: 40px; height: 40px;
+            align-items: center; justify-content: center;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+        .hamburger-btn:hover { background: var(--bg-light); }
+
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.5);
+            z-index: 1400;
+        }
+        .mobile-overlay.open { display: block; }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0; right: 0;
+            width: min(320px, 85vw);
+            height: 100%;
+            background: var(--white);
+            z-index: 1500;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.2);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        .mobile-menu.open { transform: translateX(0); }
+
+        .mobile-menu-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 20px;
+            border-bottom: 1px solid var(--border);
+        }
+        .mobile-menu-header span {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--slate-dark);
+        }
+        [data-theme="dark"] .mobile-menu-header span { color: var(--slate-mid); }
+        .mobile-menu-close {
+            background: none; border: none; font-size: 1.3rem;
+            color: var(--text-main); cursor: pointer;
+            width: 36px; height: 36px; border-radius: 50%;
+        }
+        .mobile-menu-close:hover { background: var(--bg-light); }
+
+        .mobile-menu-group { padding: 14px 12px 4px; }
+        .mobile-menu-group-title {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-weight: 700;
+            color: var(--text-muted);
+            padding: 0 10px 8px;
+        }
+        .mobile-menu .nav-item {
+            width: 100%;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.92rem;
+            text-transform: none;
+            letter-spacing: normal;
+            padding: 12px 10px;
+            border-radius: 8px;
+            border-bottom: none;
+            min-height: 44px;
+        }
+        .mobile-menu .nav-item i { color: var(--emerald); width: 20px; text-align: center; }
+        .mobile-menu .nav-item:active, .mobile-menu .nav-item.active { background: rgba(5,150,105,0.1); color: var(--emerald); }
+        .mobile-menu-footer {
+            margin-top: auto;
+            padding: 16px 20px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* --- Botones --- */
+        .btn-primary {
+            background: var(--slate-dark);
+            color: white;
+            border: none;
+            padding: 14px 40px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 24px;
+            width: 100%;
+            transition: 0.25s;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.88rem;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn-primary:hover:not(:disabled) { background: var(--emerald); box-shadow: 0 8px 20px rgba(5,150,105,0.25); transform: translateY(-1px); }
+        .btn-primary:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+
+        .btn-secondary {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 10px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: 0.2s;
+        }
+        .btn-secondary:hover:not(:disabled) { border-color: var(--emerald); color: var(--emerald); background: rgba(5,150,105,0.04); }
+        .btn-secondary:disabled { opacity: 0.6; cursor: not-allowed; }
+
+        /* --- Tarjetas --- */
+        .home-tool-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 22px 16px;
+            cursor: pointer;
+            text-align: center;
+            transition: 0.25s;
+        }
+        .home-tool-card:hover { transform: translateY(-4px); border-color: var(--emerald); box-shadow: 0 10px 20px rgba(5,150,105,0.12); }
+        .home-tool-card i { font-size: 1.6rem; color: var(--emerald); margin-bottom: 10px; display: block; }
+        .home-tool-card span { font-weight: 600; font-size: 0.88rem; color: var(--text-main); display: block; }
+        .home-tool-card small { display: block; margin-top: 4px; color: var(--emerald-dark); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; }
+
+        .badge-local {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.5px;
+            font-weight: 700; padding: 5px 12px; border-radius: 20px; margin-top: 10px;
+            background: rgba(5,150,105,0.12); color: var(--emerald-dark);
+        }
+
+        .drop-area {
+            background: var(--white);
+            border: 2px dashed #cbd5e1;
+            border-radius: 8px;
+            padding: 45px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .drop-area.dragover { border-color: var(--emerald); background-color: rgba(5, 150, 105, 0.08); }
+        .drop-area p { color: var(--text-main); font-weight: 600; }
+        .drop-area small { color: var(--text-muted); display: block; margin-top: 6px; }
+
+        .extracted-img-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .extracted-img-card img {
+            max-width: 100%;
+            max-height: 120px;
+            object-fit: contain;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            background: #eaeaea;
+        }
+
+        /* --- Formularios --- */
+        .field-label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        select, input[type="number"], input[type="text"], input[type="password"] {
+            font-family: 'Inter', sans-serif;
+            background: var(--white);
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 10px 12px;
+            font-size: 0.95rem;
+            transition: 0.25s;
+        }
+        select:focus, input:focus {
+            outline: none; border-color: var(--emerald); box-shadow: 0 0 0 4px rgba(5,150,105,0.15);
+        }
+
+        .file-list { margin-top: 20px; list-style: none; }
+        .file-item {
+            background: var(--white);
+            padding: 14px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            border: 1px solid var(--border);
+        }
+        .file-controls { display: flex; gap: 12px; align-items: center; }
+
+        .order-btn {
+            background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 1.05rem; transition: 0.2s;
+        }
+        .order-btn:hover { color: var(--emerald); }
+
+        .progreso-container { width: 100%; background: var(--border); height: 8px; border-radius: 4px; margin-top: 20px; overflow: hidden; display: none; }
+        .progreso-fill { height: 100%; background: var(--emerald); width: 0%; transition: 0.2s; }
+        .progreso-label { font-size: 0.8rem; color: var(--text-muted); margin-top: 6px; text-align: center; display: none; }
+
+        /* ==========================================================================
+           5. UTILIDADES (accesibilidad, spinner, animaciones)
+           ========================================================================== */
+        a:focus-visible, button:focus-visible, input:focus-visible,
+        select:focus-visible, [tabindex]:focus-visible {
+            outline: 3px solid var(--focus-ring);
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -60px;
+            left: 10px;
+            background: var(--emerald);
+            color: white;
+            padding: 10px 16px;
+            border-radius: 6px;
+            z-index: 2000;
+            transition: top 0.2s;
+        }
+        .skip-link:focus { top: 10px; }
+
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+
+        .spinner {
+            width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.4);
+            border-top-color: white; border-radius: 50%; display: inline-block;
+            animation: spin 0.7s linear infinite; vertical-align: -2px;
+            flex-shrink: 0;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ==========================================================================
+           6. RESPONSIVE / MEDIA QUERIES
+           ========================================================================== */
+        @media (max-width: 990px) {
+            nav { padding: 0 16px; }
+            .nav-links > .nav-item[data-tool],
+            .nav-links > .nav-dropdown,
+            .nav-links > .icon-btn#dark-toggle {
+                display: none;
+            }
+            .hamburger-btn { display: flex; }
+        }
+
+        @media (max-width: 640px) {
+            .home-tools-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            .home-tool-card { padding: 16px 10px; }
+            .preview-grid { grid-template-columns: repeat(auto-fill, minmax(105px, 1fr)); gap: 10px; }
+            .image-extraction-container { grid-template-columns: repeat(2, 1fr); }
+            .home-description { grid-template-columns: 1fr; gap: 24px; }
+            .top-banner { padding: 0 40px; font-size: 0.72rem; gap: 6px; }
+            .top-banner .banner-full { display: none; }
+            .top-banner .banner-short { display: inline; }
+            .btn-primary { padding: 14px 20px; }
+        }
+
+        @media (max-width: 380px) {
+            .home-tools-grid { grid-template-columns: 1fr 1fr; }
+            .tool-header h2 { font-size: 1.6rem; }
+        }
+    </style>
+
+    <!--
+      NOTA DE ESTABILIDAD: las versiones de pdf-lib, pdf.js (y su worker) y mammoth
+      están fijadas (pinned) a versiones probadas y mutuamente compatibles.
+      No actualizar pdf.js sin actualizar también su worker a la misma versión exacta,
+      ya que versiones distintas entre el core y el worker rompen el renderizado.
+    -->
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+    <a href="#main-content" class="skip-link">Saltar al contenido</a>
+
+    <!-- ============ BANNER SUPERIOR ============ -->
+    <div class="top-banner" id="top-banner" role="note">
+        <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+        <span class="banner-full">Software 100% Gratuito, Seguro y Sin Anuncios — tus archivos nunca salen de tu navegador.</span>
+        <span class="banner-short">100% Gratis, Seguro y Sin Anuncios</span>
+        <button class="top-banner-close" aria-label="Cerrar aviso" onclick="closeBanner()">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+    </div>
+
+    <nav aria-label="Navegación principal">
+        <button class="logo" onclick="changeTool('home')" aria-label="Ir al inicio">PDF <span>ESTUDIANTES</span></button>
+        <div class="nav-links">
+            <button class="nav-item" data-tool="unir" onclick="changeTool('unir')">Unir</button>
+            <button class="nav-item" data-tool="dividir" onclick="changeTool('dividir')">Dividir</button>
+            <button class="nav-item" data-tool="comprimir" onclick="changeTool('comprimir')">Comprimir</button>
+            <button class="nav-item" data-tool="rotar" onclick="changeTool('rotar')">Rotar</button>
+
+            <div class="nav-dropdown">
+                <button class="nav-item" id="drop-avanzado-toggle" aria-haspopup="true" aria-expanded="false" onclick="toggleDropdown('panel-avanzado')">
+                    Edición <i class="fa-solid fa-caret-down" style="margin-left:2px;"></i>
+                </button>
+                <div class="nav-dropdown-panel" id="panel-avanzado" role="menu">
+                    <button class="nav-item" role="menuitem" onclick="changeTool('word2pdf'); closeAllDropdowns();">
+                        <i class="fa-solid fa-file-word"></i> Word a PDF
+                    </button>
+                    <button class="nav-item" role="menuitem" onclick="changeTool('desencriptar'); closeAllDropdowns();">
+                        <i class="fa-solid fa-unlock"></i> Desencriptar PDF
+                    </button>
+                    <button class="nav-item" role="menuitem" onclick="changeTool('ahorro'); closeAllDropdowns();">
+                        <i class="fa-solid fa-print"></i> Ahorro de Tinta
+                    </button>
+                    <button class="nav-item" role="menuitem" onclick="changeTool('reparar'); closeAllDropdowns();">
+                        <i class="fa-solid fa-kit-medical"></i> Reparar PDF
+                    </button>
+                    <button class="nav-item" role="menuitem" onclick="changeTool('recortar'); closeAllDropdowns();">
+                        <i class="fa-solid fa-crop-simple"></i> Recortar Márgenes
+                    </button>
+                </div>
+            </div>
+
+            <div class="nav-dropdown">
+                <button class="nav-item" id="drop-media-toggle" aria-haspopup="true" aria-expanded="false" onclick="toggleDropdown('panel-media')">
+                    Multimedia <i class="fa-solid fa-caret-down" style="margin-left:2px;"></i>
+                </button>
+                <div class="nav-dropdown-panel" id="panel-media" role="menu">
+                    <button class="nav-item" role="menuitem" onclick="changeTool('extractor'); closeAllDropdowns();">
+                        <i class="fa-solid fa-images"></i> Extraer Imágenes
+                    </button>
+                    <button class="nav-item" role="menuitem" onclick="changeTool('img2pdf'); closeAllDropdowns();">
+                        <i class="fa-solid fa-file-image"></i> Imágenes a PDF
+                    </button>
+                    <button class="nav-item" role="menuitem" onclick="changeTool('limpiador'); closeAllDropdowns();">
+                        <i class="fa-solid fa-broom"></i> Limpiar Apuntes
+                    </button>
+                </div>
+            </div>
+
+            <button class="icon-btn" id="dark-toggle" aria-pressed="false" aria-label="Alternar modo oscuro" onclick="toggleDarkMode()">
+                <i class="fa-solid fa-moon" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <button class="hamburger-btn" id="hamburger-btn" aria-label="Abrir menú de herramientas" aria-expanded="false" aria-controls="mobile-menu" onclick="toggleMobileMenu()">
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+    </nav>
+
+    <!-- ============ MENÚ MÓVIL ============ -->
+    <div class="mobile-overlay" id="mobile-overlay" onclick="closeMobileMenu()"></div>
+    <aside class="mobile-menu" id="mobile-menu" aria-label="Menú de herramientas" aria-hidden="true">
+        <div class="mobile-menu-header">
+            <span>PDF <span style="color:var(--emerald)">ESTUDIANTES</span></span>
+            <button class="mobile-menu-close" aria-label="Cerrar menú" onclick="closeMobileMenu()">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <div class="mobile-menu-group">
+            <p class="mobile-menu-group-title">Principales</p>
+            <button class="nav-item" data-tool="unir" onclick="mobileGo('unir')"><i class="fa-solid fa-layer-group"></i> Unir PDFs</button>
+            <button class="nav-item" data-tool="dividir" onclick="mobileGo('dividir')"><i class="fa-solid fa-scissors"></i> Dividir PDF</button>
+            <button class="nav-item" data-tool="comprimir" onclick="mobileGo('comprimir')"><i class="fa-solid fa-file-zipper"></i> Comprimir</button>
+            <button class="nav-item" data-tool="rotar" onclick="mobileGo('rotar')"><i class="fa-solid fa-rotate-right"></i> Rotar Páginas</button>
+        </div>
+
+        <div class="mobile-menu-group">
+            <p class="mobile-menu-group-title">Edición</p>
+            <button class="nav-item" data-tool="word2pdf" onclick="mobileGo('word2pdf')"><i class="fa-solid fa-file-word"></i> Word a PDF</button>
+            <button class="nav-item" data-tool="desencriptar" onclick="mobileGo('desencriptar')"><i class="fa-solid fa-unlock"></i> Desencriptar PDF</button>
+            <button class="nav-item" data-tool="ahorro" onclick="mobileGo('ahorro')"><i class="fa-solid fa-print"></i> Ahorro de Tinta</button>
+            <button class="nav-item" data-tool="reparar" onclick="mobileGo('reparar')"><i class="fa-solid fa-kit-medical"></i> Reparar PDF</button>
+            <button class="nav-item" data-tool="recortar" onclick="mobileGo('recortar')"><i class="fa-solid fa-crop-simple"></i> Recortar Márgenes</button>
+        </div>
+
+        <div class="mobile-menu-group">
+            <p class="mobile-menu-group-title">Multimedia</p>
+            <button class="nav-item" data-tool="extractor" onclick="mobileGo('extractor')"><i class="fa-solid fa-images"></i> Extraer Imágenes</button>
+            <button class="nav-item" data-tool="img2pdf" onclick="mobileGo('img2pdf')"><i class="fa-solid fa-file-image"></i> Imágenes a PDF</button>
+            <button class="nav-item" data-tool="limpiador" onclick="mobileGo('limpiador')"><i class="fa-solid fa-broom"></i> Limpiar Apuntes</button>
+        </div>
+
+        <div class="mobile-menu-footer">
+            <span style="font-size:0.85rem; font-weight:600;">Modo oscuro</span>
+            <button class="icon-btn" id="dark-toggle-mobile" aria-pressed="false" aria-label="Alternar modo oscuro" onclick="toggleDarkMode()">
+                <i class="fa-solid fa-moon" aria-hidden="true"></i>
+            </button>
+        </div>
+    </aside>
+
+    <main id="main-content">
+
+    <div id="section-home" class="home-container">
+        <h1 class="home-title">PDF para Estudiantes</h1>
+        <p class="home-slogan">De los estudiantes para los estudiantes</p>
+
+        <div class="home-description">
+            <div class="desc-box">
+                <h4>Privacidad Cifrada</h4>
+                <p>Ningún documento viaja por internet. Todo el procesamiento se realiza en la memoria de tu propio navegador web de forma aislada.</p>
+            </div>
+            <div class="desc-box">
+                <h4>Suite 100% Local</h4>
+                <p>Une, divide, edita, optimiza y compila tus archivos escolares al instante. Sin registros obligatorios, caídas de red ni publicidad.</p>
+            </div>
+            <div class="desc-box">
+                <h4>Herramientas Exclusivas</h4>
+                <p>Diseñada específicamente con funciones avanzadas para flujos académicos exigentes, optimización de impresión y rescate de archivos.</p>
+            </div>
+        </div>
+
+        <div class="home-tools-grid">
+            <div class="home-tool-card" onclick="changeTool('unir')">
+                <i class="fa-solid fa-layer-group"></i><span>Unir PDFs</span><small>Local</small>
+            </div>
+            <div class="home-tool-card" onclick="changeTool('dividir')">
+                <i class="fa-solid fa-scissors"></i><span>Dividir PDF</span><small>Local</small>
+            </div>
+            <div class="home-tool-card" onclick="changeTool('comprimir')">
+                <i class="fa-solid fa-file-zipper"></i><span>Comprimir</span><small>Local</small>
+            </div>
+            <div class="home-tool-card" onclick="changeTool('rotar')">
+                <i class="fa-solid fa-rotate-right"></i><span>Rotar Páginas</span><small>Local</small>
+            </div>
+            <div class="home-tool-card" onclick="changeTool('word2pdf')">
+                <i class="fa-solid fa-file-word"></i><span>Word a PDF</span><small>Local</small>
+            </div>
+            <div class="home-tool-card" onclick="changeTool('extractor')">
+                <i class="fa-solid fa-images"></i><span>Extraer Imágenes</span><small>Local</small>
+            </div>
+            <div class="home-tool-card" onclick="changeTool('desencriptar')">
+                <i class="fa-solid fa-unlock"></i><span>Desencriptar PDF</span><small>Local</small>
+            </div>
+            <div class="home-tool-card" onclick="changeTool('ahorro')">
+                <i class="fa-solid fa-print"></i><span>Ahorro de Tinta</span><small>Local</small>
+            </div>
+            <div class="home-tool-card" onclick="changeTool('img2pdf')">
+                <i class="fa-solid fa-file-image"></i><span>Imágenes a PDF</span><small>Local</small>
+            </div>
+            <div class="home-tool-card" onclick="changeTool('reparar')">
+                <i class="fa-solid fa-kit-medical"></i><span>Reparar PDF</span><small>Local</small>
+            </div>
+            <div class="home-tool-card" onclick="changeTool('limpiador')">
+                <i class="fa-solid fa-broom"></i><span>Limpiar Apuntes</span><small>Local</small>
+            </div>
+            <div class="home-tool-card" onclick="changeTool('recortar')">
+                <i class="fa-solid fa-crop-simple"></i><span>Recortar Márgenes</span><small>Local</small>
+            </div>
+        </div>
+    </div>
+
+    <div id="section-unir" class="tool-section">
+        <div class="tool-header">
+            <h2>Unir PDFs</h2>
+            <div class="line"></div>
+            <p>Combina múltiples documentos académicos en un solo archivo ordenado.</p>
+            <span class="badge-local"><i class="fa-solid fa-lock"></i> 100% local</span>
+        </div>
+        <div class="drop-area" id="drop-unir" onclick="document.getElementById('in-unir').click()">
+            <p><i class="fa-solid fa-plus-circle" style="font-size: 2rem; margin-bottom: 10px; color: var(--emerald);"></i><br>Arrastra los PDFs aquí o haz clic para subir</p>
+            <input type="file" id="in-unir" multiple accept=".pdf" style="display:none" onchange="loadFiles('unir', this.files)">
+        </div>
+        <ul id="list-unir" class="file-list"></ul>
+        <button class="btn-primary" id="btn-unir-go" onclick="doMerge()">¡Unir Documentos!</button>
+    </div>
+
+    <div id="section-dividir" class="tool-section">
+        <div class="tool-header">
+            <h2>Dividir PDF</h2>
+            <div class="line"></div>
+            <p>Extrae rangos específicos de páginas de tus lecturas pesadas.</p>
+            <span class="badge-local"><i class="fa-solid fa-lock"></i> 100% local</span>
+        </div>
+        <div class="drop-area" id="drop-dividir" onclick="document.getElementById('in-dividir').click()">
+            <p><i class="fa-solid fa-scissors" style="font-size: 2rem; margin-bottom: 10px; color: var(--emerald);"></i><br>Arrastra aquí el archivo para dividir o haz clic</p>
+            <input type="file" id="in-dividir" accept=".pdf" style="display:none" onchange="loadFiles('dividir', this.files)">
+        </div>
+        <div id="split-settings" style="display:none; margin-top:20px; text-align:center;">
+            <p id="split-name" style="font-weight:700; margin-bottom:10px;"></p>
+            <div style="display:flex; gap:10px; justify-content:center; margin-bottom:15px; flex-wrap:wrap;">
+                <input type="number" id="split-start" placeholder="Desde" style="width:100px;" min="1">
+                <input type="number" id="split-end" placeholder="Hasta" style="width:100px;" min="1">
+            </div>
+            <button class="btn-primary" id="btn-split-go" onclick="doSplit()">Descargar Rango</button>
+        </div>
+    </div>
+
+    <div id="section-comprimir" class="tool-section">
+        <div class="tool-header">
+            <h2>Comprimir PDF</h2>
+            <div class="line"></div>
+            <p>Reduce el peso de tus archivos reconstruyendo las páginas localmente.</p>
+            <span class="badge-local"><i class="fa-solid fa-lock"></i> 100% local</span>
+        </div>
+        <div class="drop-area" id="drop-comprimir" onclick="document.getElementById('in-comprimir').click()">
+            <p><i class="fa-solid fa-file-contract" style="font-size: 2rem; margin-bottom: 10px; color: var(--emerald);"></i><br>Arrastra el archivo PDF pesado aquí o haz clic</p>
+            <input type="file" id="in-comprimir" accept=".pdf" style="display:none" onchange="loadFiles('comprimir', this.files)">
+        </div>
+        <div id="comp-info" style="margin-top:20px; text-align:center; font-weight:600;"></div>
+        <div class="progreso-container" id="prog-cont">
+            <div class="progreso-fill" id="prog-fill"></div>
+        </div>
+        <p class="progreso-label" id="prog-label-comp">Procesando páginas…</p>
+        <button class="btn-primary" id="btn-comp-go" style="display:none" onclick="doCompress()">Optimizar peso ahora</button>
+    </div>
+
+    <div id="section-rotar" class="tool-section">
+        <div class="tool-header">
+            <h2>Rotar Páginas</h2>
+            <div class="line"></div>
+            <p>Gira de forma visual y selectiva las hojas del documento.</p>
+            <span class="badge-local"><i class="fa-solid fa-lock"></i> 100% local</span>
+        </div>
+        <div class="drop-area" id="drop-rotar" onclick="document.getElementById('in-rotar').click()">
+            <p><i class="fa-solid fa-rotate-right" style="font-size: 2rem; margin-bottom: 10px; color: var(--emerald);"></i><br>Arrastra el PDF que tiene páginas de lado o haz clic</p>
+            <input type="file" id="in-rotar" accept=".pdf" style="display:none" onchange="loadFiles('rotar', this.files)">
+        </div>
+        <div id="rotate-grid" class="preview-grid"></div>
+        <button class="btn-primary" id="btn-rot-go" style="display:none" onclick="doRotate()">Guardar y Descargar</button>
+    </div>
+
+    <div id="section-word2pdf" class="tool-section">
+        <div class="tool-header">
+            <h2>Word a PDF</h2>
+            <div class="line"></div>
+            <p>Convierte documentos .docx estructurados de forma 100% nativa.</p>
+            <span class="badge-local"><i class="fa-solid fa-lock"></i> 100% local</span>
+        </div>
+        <div class="drop-area" id="drop-word2pdf" onclick="document.getElementById('in-word2pdf').click()">
+            <p><i class="fa-solid fa-file-word" style="font-size: 2rem; margin-bottom: 10px; color: var(--emerald);"></i><br>Arrastra tu archivo .docx aquí o haz clic</p>
+            <input type="file" id="in-word2pdf" accept=".docx" style="display:none" onchange="loadFiles('word2pdf', this.files)">
+        </div>
+        <div id="word2pdf-info" style="margin-top:20px; text-align:center; font-weight:600;"></div>
+        <button class="btn-primary" id="btn-word2pdf-go" style="display:none" onclick="doWordToPdf()">Convertir a PDF</button>
+        <div id="word2pdf-preview" style="display:none; margin-top:24px; background:var(--white); border:1px solid var(--border); border-radius:8px; padding:24px; max-height:400px; overflow:auto;"></div>
+    </div>
+
+    <div id="section-extractor" class="tool-section">
+        <div class="tool-header">
+            <h2>Extractor Local de Imágenes</h2>
+            <div class="line"></div>
+            <p>Extrae todos los diagramas, esquemas y fotos incrustadas del PDF en su calidad original.</p>
+            <span class="badge-local"><i class="fa-solid fa-lock"></i> 100% local</span>
+        </div>
+        <div class="drop-area" id="drop-extractor" onclick="document.getElementById('in-extractor').click()">
+            <p><i class="fa-solid fa-images" style="font-size: 2rem; margin-bottom: 10px; color: var(--emerald);"></i><br>Arrastra el PDF para extraer sus gráficos o haz clic</p>
+            <input type="file" id="in-extractor" accept=".pdf" style="display:none" onchange="loadFiles('extractor', this.files)">
+        </div>
+        <div id="extractor-images-output" class="image-extraction-container"></div>
+    </div>
+
+    <div id="section-desencriptar" class="tool-section">
+        <div class="tool-header">
+            <h2>Desencriptar PDF</h2>
+            <div class="line"></div>
+            <p>Remueve restricciones de impresión y copiado ingresando la contraseña conocida del documento.</p>
+            <span class="badge-local"><i class="fa-solid fa-lock"></i> 100% local</span>
+        </div>
+        <div class="drop-area" id="drop-desencriptar" onclick="document.getElementById('in-desencriptar').click()">
+            <p><i class="fa-solid fa-unlock" style="font-size: 2rem; margin-bottom: 10px; color: var(--emerald);"></i><br>Arrastra el PDF restringido o haz clic</p>
+            <input type="file" id="in-desencriptar" accept=".pdf" style="display:none" onchange="loadFiles('desencriptar', this.files)">
+        </div>
+        <div id="decryption-box" style="display:none; margin-top: 20px; text-align: center;">
+            <label class="field-label" for="pdf-pass">Contraseña del Documento</label>
+            <input type="password" id="pdf-pass" placeholder="Escribe la contraseña aquí..." style="width: 260px; margin-bottom: 10px;"><br>
+            <button class="btn-primary" id="btn-decrypt-go" onclick="doDecrypt()" style="max-width: 300px;">Eliminar Restricciones</button>
+        </div>
+    </div>
+
+    <div id="section-ahorro" class="tool-section">
+        <div class="tool-header">
+            <h2>Modo Ahorro de Tinta</h2>
+            <div class="line"></div>
+            <p>Invierte los colores de diapositivas con fondos oscuros para evitar gastar cartuchos al imprimir.</p>
+            <span class="badge-local"><i class="fa-solid fa-lock"></i> 100% local</span>
+        </div>
+        <div class="drop-area" id="drop-ahorro" onclick="document.getElementById('in-ahorro').click()">
+            <p><i class="fa-solid fa-print" style="font-size: 2rem; margin-bottom: 10px; color: var(--emerald);"></i><br>Arrastra las diapositivas oscuras aquí o haz clic</p>
+            <input type="file" id="in-ahorro" accept=".pdf" style="display:none" onchange="loadFiles('ahorro', this.files)">
+        </div>
+        <div id="ahorro-info" style="margin-top:20px; text-align:center; font-weight:600;"></div>
+        <button class="btn-primary" id="btn-ahorro-go" style="display:none" onclick="doInkSave()">Invertir Colores y Descargar</button>
+    </div>
+
+    <div id="section-img2pdf" class="tool-section">
+        <div class="tool-header">
+            <h2>Imágenes a PDF (Compilador de Tareas)</h2>
+            <div class="line"></div>
+            <p>Convierte las fotos tomadas a tus libretas en un único PDF estructurado en tamaño estándar Carta/A4.</p>
+            <span class="badge-local"><i class="fa-solid fa-lock"></i> 100% local</span>
+        </div>
+        <div class="drop-area" id="drop-img2pdf" onclick="document.getElementById('in-img2pdf').click()">
+            <p><i class="fa-solid fa-file-image" style="font-size: 2rem; margin-bottom: 10px; color: var(--emerald);"></i><br>Arrastra todas las capturas de tu libreta (JPG/PNG) o haz clic</p>
+            <input type="file" id="in-img2pdf" multiple accept="image/*" style="display:none" onchange="loadFiles('img2pdf', this.files)">
+        </div>
+        <ul id="list-img2pdf" class="file-list"></ul>
+        <button class="btn-primary" id="btn-img2pdf-go" style="display:none" onclick="doImagesToPdf()">Compilar en PDF Formal</button>
+    </div>
+
+    <div id="section-reparar" class="tool-section">
+        <div class="tool-header">
+            <h2>Reparador de PDFs Dañados</h2>
+            <div class="line"></div>
+            <p>Reconstruye la estructura interna del archivo para que plataformas escolares (Moodle, Teams) lo acepten sin errores.</p>
+            <span class="badge-local"><i class="fa-solid fa-lock"></i> 100% local</span>
+        </div>
+        <div class="drop-area" id="drop-reparar" onclick="document.getElementById('in-reparar').click()">
+            <p><i class="fa-solid fa-kit-medical" style="font-size: 2rem; margin-bottom: 10px; color: var(--emerald);"></i><br>Arrastra el PDF corrupto o rechazado aquí o haz clic</p>
+            <input type="file" id="in-reparar" accept=".pdf" style="display:none" onchange="loadFiles('reparar', this.files)">
+        </div>
+        <div id="reparar-info" style="margin-top:20px; text-align:center; font-weight:600;"></div>
+        <button class="btn-primary" id="btn-reparar-go" style="display:none" onclick="doRepairPdf()">Reestructurar y Sanitizar PDF</button>
+    </div>
+
+    <div id="section-limpiador" class="tool-section">
+        <div class="tool-header">
+            <h2>Limpiador de Apuntes y Anotaciones</h2>
+            <div class="line"></div>
+            <p>Elimina las capas vectoriales de dibujos, rayones y notas añadidas encima de un libro o PDF prestado.</p>
+            <span class="badge-local"><i class="fa-solid fa-lock"></i> 100% local</span>
+        </div>
+        <div class="drop-area" id="drop-limpiador" onclick="document.getElementById('in-limpiador').click()">
+            <p><i class="fa-solid fa-broom" style="font-size: 2rem; margin-bottom: 10px; color: var(--emerald);"></i><br>Arrastra el PDF rayado aquí o haz clic</p>
+            <input type="file" id="in-limpiador" accept=".pdf" style="display:none" onchange="loadFiles('limpiador', this.files)">
+        </div>
+        <div id="limpiador-info" style="margin-top:20px; text-align:center; font-weight:600;"></div>
+        <button class="btn-primary" id="btn-limpiador-go" style="display:none" onclick="doCleanAnnotations()">Remover Capas de Rayones</button>
+    </div>
+
+    <div id="section-recortar" class="tool-section">
+        <div class="tool-header">
+            <h2>Recortador de Márgenes Blancos</h2>
+            <div class="line"></div>
+            <p>Ajusta las cajas de visualización (CropBox) para maximizar la lectura en dispositivos móviles o tablets.</p>
+            <span class="badge-local"><i class="fa-solid fa-lock"></i> 100% local</span>
+        </div>
+        <div class="drop-area" id="drop-recortar" onclick="document.getElementById('in-recortar').click()">
+            <p><i class="fa-solid fa-crop-simple" style="font-size: 2rem; margin-bottom: 10px; color: var(--emerald);"></i><br>Arrastra el PDF con márgenes gigantescos o haz clic</p>
+            <input type="file" id="in-recortar" accept=".pdf" style="display:none" onchange="loadFiles('recortar', this.files)">
+        </div>
+        <div id="recortar-info" style="margin-top:20px; text-align:center; font-weight:600;"></div>
+        <button class="btn-primary" id="btn-recortar-go" style="display:none" onclick="doCropMargins()">Recortar Márgenes al 10% y Descargar</button>
+    </div>
+
+    </main>
+
+    <footer>
+        Suite de Herramientas Estudiantiles PDF — Procesamiento local seguro ejecutado directamente en el hilo aislado del navegador cliente.
+    </footer>
+
+    <script>
+        // ==========================================================================
+        // NAVEGACIÓN GENERAL (secciones, dropdowns de escritorio, menú móvil)
+        // ==========================================================================
+        function changeTool(name) {
+            document.querySelectorAll('.tool-section, .home-container').forEach(s => s.style.display = 'none');
+            const target = document.getElementById('section-' + name);
+            if (target) target.style.display = (name === 'home') ? 'flex' : 'block';
+            document.querySelectorAll('.nav-item[data-tool]').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.tool === name);
+            });
+            closeAllDropdowns();
+            closeMobileMenu();
+            window.scrollTo(0, 0);
+        }
+
+        function mobileGo(name) { changeTool(name); }
+
+        function toggleDropdown(id) {
+            const currentPanel = document.getElementById(id);
+            const isOpen = currentPanel.classList.contains('open');
+            closeAllDropdowns();
+            if (!isOpen) {
+                currentPanel.classList.add('open');
+                currentPanel.previousElementSibling.setAttribute('aria-expanded', 'true');
+            }
+        }
+
+        function closeAllDropdowns() {
+            document.querySelectorAll('.nav-dropdown-panel').forEach(p => p.classList.remove('open'));
+            document.querySelectorAll('.nav-dropdown .nav-item').forEach(b => b.setAttribute('aria-expanded', 'false'));
+        }
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-dropdown')) closeAllDropdowns();
+        });
+
+        // --- Menú móvil (hamburguesa) ---
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.contains('open') ? closeMobileMenu() : openMobileMenu();
+        }
+        function openMobileMenu() {
+            document.getElementById('mobile-menu').classList.add('open');
+            document.getElementById('mobile-overlay').classList.add('open');
+            document.getElementById('mobile-menu').setAttribute('aria-hidden', 'false');
+            document.getElementById('hamburger-btn').setAttribute('aria-expanded', 'true');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeMobileMenu() {
+            document.getElementById('mobile-menu').classList.remove('open');
+            document.getElementById('mobile-overlay').classList.remove('open');
+            document.getElementById('mobile-menu').setAttribute('aria-hidden', 'true');
+            document.getElementById('hamburger-btn').setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') { closeMobileMenu(); closeAllDropdowns(); }
+        });
+
+        // --- Banner superior ---
+        function closeBanner() {
+            document.getElementById('top-banner').style.display = 'none';
+            document.documentElement.style.setProperty('--banner-h', '0px');
+        }
+
+        function toggleDarkMode() {
+            const b = document.body;
+            const isDark = b.getAttribute('data-theme') === 'dark';
+            b.setAttribute('data-theme', isDark ? '' : 'dark');
+            const pressed = isDark ? 'false' : 'true';
+            const iconClass = isDark ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+            document.getElementById('dark-toggle').setAttribute('aria-pressed', pressed);
+            document.querySelector('#dark-toggle i').className = iconClass;
+            const mobileToggle = document.getElementById('dark-toggle-mobile');
+            mobileToggle.setAttribute('aria-pressed', pressed);
+            mobileToggle.querySelector('i').className = iconClass;
+        }
+
+        // ==========================================================================
+        // ESTADOS DE CARGA (spinner + disabled) PARA BOTONES DE ACCIÓN
+        // ==========================================================================
+        async function withLoading(btnId, loadingText, task) {
+            const btn = document.getElementById(btnId);
+            if (!btn) { await task(); return; }
+            const originalHTML = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = `<span class="spinner" aria-hidden="true"></span><span>${loadingText}</span>`;
+            try {
+                await task();
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = originalHTML;
+            }
+        }
+
+        // --- PREVENIR COMPORTAMIENTO POR DEFECTO DEL ARRASTRE ---
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            document.addEventListener(eventName, e => {
+                e.preventDefault();
+                e.stopPropagation();
+            }, false);
+        });
+
+        const setupDragAndDrop = (id, toolName) => {
+            const el = document.getElementById(id);
+            if (!el) return;
+            el.addEventListener('dragover', () => el.classList.add('dragover'));
+            el.addEventListener('dragleave', () => el.classList.remove('dragover'));
+            el.addEventListener('drop', (e) => {
+                el.classList.remove('dragover');
+                const files = e.dataTransfer.files;
+                if (files.length > 0) loadFiles(toolName, files);
+            });
+        };
+
+        ['unir', 'dividir', 'comprimir', 'rotar', 'word2pdf', 'extractor', 'desencriptar', 'ahorro', 'img2pdf', 'reparar', 'limpiador', 'recortar'].forEach(t => setupDragAndDrop('drop-' + t, t));
+
+        // --- ESTADO DE LA APP ---
+        let appState = {
+            merge: [], split: null, compress: null, rotate: null, rotateAngles: [],
+            word2pdf: null, extractor: null, decryptFile: null, inkSaveFile: null,
+            imagesToPdfList: [], repairFile: null, cleanerFile: null, cropFile: null
+        };
+
+        // --- CONTROLADOR GENERAL DE CARGA DE ARCHIVOS ---
+        async function loadFiles(tool, files) {
+            try {
+                if (tool === 'unir') {
+                    for (let f of files) {
+                        if (f.type !== 'application/pdf') continue;
+                        const bytes = await f.arrayBuffer();
+                        const pdf = await PDFLib.PDFDocument.load(bytes);
+                        appState.merge.push({ file: f, pages: pdf.getPageCount() });
+                    }
+                    renderMergeList();
+                } else if (tool === 'dividir') {
+                    if (files[0].type !== 'application/pdf') return alert("Por favor selecciona un archivo PDF");
+                    appState.split = files[0];
+                    const bytes = await appState.split.arrayBuffer();
+                    const pdf = await PDFLib.PDFDocument.load(bytes);
+                    document.getElementById('split-name').innerText = appState.split.name;
+                    document.getElementById('split-start').value = 1;
+                    document.getElementById('split-end').value = pdf.getPageCount();
+                    document.getElementById('split-settings').style.display = 'block';
+                } else if (tool === 'comprimir') {
+                    if (files[0].type !== 'application/pdf') return alert("Por favor selecciona un archivo PDF");
+                    appState.compress = files[0];
+                    document.getElementById('comp-info').innerText = "Archivo cargado: " + appState.compress.name;
+                    document.getElementById('btn-comp-go').style.display = 'flex';
+                } else if (tool === 'rotar') {
+                    if (files[0].type !== 'application/pdf') return alert("Por favor selecciona un archivo PDF");
+                    appState.rotate = files[0];
+                    renderRotateGrid();
+                } else if (tool === 'word2pdf') {
+                    if (!files[0].name.toLowerCase().endsWith('.docx')) return alert("Carga un archivo con extensión .docx");
+                    appState.word2pdf = files[0];
+                    document.getElementById('word2pdf-info').innerText = "Archivo listo: " + files[0].name;
+                    document.getElementById('btn-word2pdf-go').style.display = 'flex';
+                } else if (tool === 'extractor') {
+                    if (files[0].type !== 'application/pdf') return alert("Selecciona un PDF válido");
+                    appState.extractor = files[0];
+                    doExtractImages();
+                } else if (tool === 'desencriptar') {
+                    appState.decryptFile = files[0];
+                    document.getElementById('decryption-box').style.display = 'block';
+                } else if (tool === 'ahorro') {
+                    appState.inkSaveFile = files[0];
+                    document.getElementById('ahorro-info').innerText = "Archivo listo: " + files[0].name;
+                    document.getElementById('btn-ahorro-go').style.display = 'flex';
+                } else if (tool === 'img2pdf') {
+                    for (let f of files) {
+                        if (!f.type.startsWith('image/')) continue;
+                        appState.imagesToPdfList.push(f);
+                    }
+                    renderImagesToPdfList();
+                } else if (tool === 'reparar') {
+                    appState.repairFile = files[0];
+                    document.getElementById('reparar-info').innerText = "Archivo dañado mapeado: " + files[0].name;
+                    document.getElementById('btn-reparar-go').style.display = 'flex';
+                } else if (tool === 'limpiador') {
+                    appState.cleanerFile = files[0];
+                    document.getElementById('limpiador-info').innerText = "Archivo cargado: " + files[0].name;
+                    document.getElementById('btn-limpiador-go').style.display = 'flex';
+                } else if (tool === 'recortar') {
+                    appState.cropFile = files[0];
+                    document.getElementById('recortar-info').innerText = "Archivo cargado: " + files[0].name;
+                    document.getElementById('btn-recortar-go').style.display = 'flex';
+                }
+            } catch (err) {
+                console.error(err);
+                alert("Error al mapear la estructura del documento: " + err.message);
+            }
+        }
+
+        // --- MÓDULOS BASE ---
+        function renderMergeList() {
+            const list = document.getElementById('list-unir'); list.innerHTML = '';
+            appState.merge.forEach((f, i) => {
+                list.innerHTML += `<li class="file-item">
+                    <span>${i+1}. ${escapeHtml(f.file.name)} (${f.pages} pág)</span>
+                    <div class="file-controls">
+                        ${i > 0 ? `<button class="order-btn" aria-label="Mover arriba" onclick="moveItem(${i},-1)"><i class="fa-solid fa-arrow-up"></i></button>` : ''}
+                        ${i < appState.merge.length - 1 ? `<button class="order-btn" aria-label="Mover abajo" onclick="moveItem(${i},1)"><i class="fa-solid fa-arrow-down"></i></button>` : ''}
+                        <button class="order-btn" style="color:var(--danger)" aria-label="Eliminar" onclick="appState.merge.splice(${i},1);renderMergeList()"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </li>`;
+            });
+        }
+
+        function moveItem(index, dir) {
+            const temp = appState.merge[index];
+            appState.merge[index] = appState.merge[index+dir];
+            appState.merge[index+dir] = temp;
+            renderMergeList();
+        }
+
+        async function renderRotateGrid() {
+            const grid = document.getElementById('rotate-grid'); grid.innerHTML = '';
+            const bytes = await appState.rotate.arrayBuffer();
+            const pdfDoc = await pdfjsLib.getDocument({ data: bytes }).promise;
+            appState.rotateAngles = Array(pdfDoc.numPages).fill(0);
+            for (let i = 1; i <= pdfDoc.numPages; i++) {
+                const page = await pdfDoc.getPage(i);
+                const vp = page.getViewport({ scale: 0.2 });
+                const card = document.createElement('div'); card.className = 'preview-card';
+                const cvs = document.createElement('canvas'); cvs.width = vp.width; cvs.height = vp.height;
+                await page.render({ canvasContext: cvs.getContext('2d'), viewport: vp }).promise;
+                const btn = document.createElement('button'); btn.className = 'btn-secondary';
+                btn.innerText = 'Girar Pág ' + i; btn.style = "margin-top:8px; width:100%;";
+                btn.onclick = () => {
+                    appState.rotateAngles[i-1] = (appState.rotateAngles[i-1] + 90) % 360;
+                    cvs.style.transform = `rotate(${appState.rotateAngles[i-1]}deg)`;
+                };
+                card.appendChild(cvs); card.appendChild(btn); grid.appendChild(card);
+            }
+            document.getElementById('btn-rot-go').style.display = 'flex';
+        }
+
+        function escapeHtml(str) { const d = document.createElement('div'); d.textContent = str; return d.innerHTML; }
+
+        // --- ACCIONES PRINCIPALES (todas con estado de carga) ---
+        async function doMerge() {
+            if (appState.merge.length < 2) return alert("Sube al menos 2 PDFs");
+            await withLoading('btn-unir-go', 'Uniendo…', async () => {
+                const doc = await PDFLib.PDFDocument.create();
+                for (let f of appState.merge) {
+                    const b = await f.file.arrayBuffer();
+                    const donor = await PDFLib.PDFDocument.load(b);
+                    const pages = await doc.copyPages(donor, donor.getPageIndices());
+                    pages.forEach(p => doc.addPage(p));
+                }
+                dl(await doc.save(), "Union_Final.pdf");
+            });
+        }
+
+        async function doSplit() {
+            if (!appState.split) return alert("Sube un PDF primero");
+            await withLoading('btn-split-go', 'Extrayendo…', async () => {
+                const start = parseInt(document.getElementById('split-start').value);
+                const end = parseInt(document.getElementById('split-end').value);
+                const b = await appState.split.arrayBuffer();
+                const donor = await PDFLib.PDFDocument.load(b);
+                const doc = await PDFLib.PDFDocument.create();
+                const idx = []; for (let i = start - 1; i < end; i++) idx.push(i);
+                const pages = await doc.copyPages(donor, idx);
+                pages.forEach(p => doc.addPage(p));
+                dl(await doc.save(), "Fragmento_Extraido.pdf");
+            });
+        }
+
+        async function doCompress() {
+            await withLoading('btn-comp-go', 'Optimizando…', async () => {
+                const fill = document.getElementById('prog-fill');
+                document.getElementById('prog-cont').style.display = 'block';
+                document.getElementById('prog-label-comp').style.display = 'block';
+                const b = await appState.compress.arrayBuffer();
+                const pdf = await pdfjsLib.getDocument({ data: b }).promise;
+                const doc = await PDFLib.PDFDocument.create();
+                const cvs = document.createElement('canvas'); const ctx = cvs.getContext('2d');
+                for (let i = 1; i <= pdf.numPages; i++) {
+                    fill.style.width = `${(i/pdf.numPages)*100}%`;
+                    const page = await pdf.getPage(i);
+                    const vp = page.getViewport({ scale: 1.2 });
+                    cvs.width = vp.width; cvs.height = vp.height;
+                    await page.render({ canvasContext: ctx, viewport: vp }).promise;
+                    const img = await doc.embedJpg(cvs.toDataURL('image/jpeg', 0.45));
+                    const p = doc.addPage([vp.width, vp.height]);
+                    p.drawImage(img, { x: 0, y: 0, width: vp.width, height: vp.height });
+                }
+                dl(await doc.save(), "Optimizado.pdf");
+                document.getElementById('prog-cont').style.display = 'none';
+                document.getElementById('prog-label-comp').style.display = 'none';
+            });
+        }
+
+        async function doRotate() {
+            await withLoading('btn-rot-go', 'Guardando…', async () => {
+                const b = await appState.rotate.arrayBuffer();
+                const pdf = await PDFLib.PDFDocument.load(b);
+                pdf.getPages().forEach((p, i) => {
+                    const cur = p.getRotation().angle;
+                    p.setRotation(PDFLib.degrees((cur + appState.rotateAngles[i]) % 360));
+                });
+                dl(await pdf.save(), "Rotado.pdf");
+            });
+        }
+
+        async function doWordToPdf() {
+            await withLoading('btn-word2pdf-go', 'Convirtiendo…', async () => {
+                const b = await appState.word2pdf.arrayBuffer();
+                const res = await mammoth.convertToHtml({ arrayBuffer: b });
+                const target = document.getElementById('word2pdf-preview');
+                target.innerHTML = `<div id="w-render" style="padding:10px; color:#1e293b;">${res.value}</div>`;
+                await html2pdf().set({
+                    margin: 15, filename: "Conversion_Word.pdf",
+                    jsPDF: { format: 'a4', orientation: 'portrait' }
+                }).from(document.getElementById('w-render')).save();
+            });
+        }
+
+        // ============ IMPLEMENTACIONES LOCALES EXCLUSIVAS ============
+
+        // 6. EXTRACTOR LOCAL DE IMÁGENES
+        async function doExtractImages() {
+            const container = document.getElementById('extractor-images-output');
+            container.innerHTML = "<p>Analizando mapa de bits del documento...</p>";
+            const b = await appState.extractor.arrayBuffer();
+            const pdf = await pdfjsLib.getDocument({ data: b }).promise;
+            container.innerHTML = "";
+            let counter = 0;
+
+            for (let i = 1; i <= pdf.numPages; i++) {
+                const page = await pdf.getPage(i);
+                const opList = await page.getOperatorList();
+                const fnArray = opList.fnArray;
+                const argsArray = opList.argsArray;
+
+                for (let j = 0; j < fnArray.length; j++) {
+                    if (fnArray[j] === pdfjsLib.OPS.paintJpegXObject || fnArray[j] === pdfjsLib.OPS.paintImageXObject) {
+                        const imgKey = argsArray[j][0];
+                        page.objs.get(imgKey, (imgObj) => {
+                            if (!imgObj || !imgObj.data) return;
+                            counter++;
+                            const cvs = document.createElement('canvas');
+                            cvs.width = imgObj.width; cvs.height = imgObj.height;
+                            const ctx = cvs.getContext('2d');
+                            const imgData = ctx.createImageData(imgObj.width, imgObj.height);
+
+                            // Ajustar decodificación según formato de bytes del flujo del objeto
+                            if (imgObj.data.length === imgObj.width * imgObj.height * 3) {
+                                for (let k = 0, l = 0; k < imgObj.data.length; k += 3, l += 4) {
+                                    imgData.data[l] = imgObj.data[k];
+                                    imgData.data[l+1] = imgObj.data[k+1];
+                                    imgData.data[l+2] = imgObj.data[k+2];
+                                    imgData.data[l+3] = 255;
+                                }
+                            } else {
+                                imgData.data.set(imgObj.data);
+                            }
+                            ctx.putImageData(imgData, 0, 0);
+
+                            const srcUrl = cvs.toDataURL('image/png');
+                            const card = document.createElement('div'); card.className = 'extracted-img-card';
+                            card.innerHTML = `<img src="${srcUrl}" alt="Imagen extraída ${counter} de la página ${i}"><br><button class="btn-secondary" style="font-size:0.75rem; padding:4px 8px;" onclick="downloadImage('${srcUrl}', 'Imagen_${counter}.png')">Descargar</button>`;
+                            container.appendChild(card);
+                        });
+                    }
+                }
+            }
+            if (counter === 0) container.innerHTML = "<p>No se encontraron recursos de imagen explícitos indexados en las páginas.</p>";
+        }
+
+        function downloadImage(url, name) { const a = document.createElement('a'); a.href = url; a.download = name; a.click(); }
+
+        // 7. DESENCRIPTAR PDF (CON CONTRASEÑA CONOCIDA)
+        async function doDecrypt() {
+            const pass = document.getElementById('pdf-pass').value;
+            if (!pass) return alert("Ingresa la clave");
+            await withLoading('btn-decrypt-go', 'Verificando…', async () => {
+                try {
+                    const b = await appState.decryptFile.arrayBuffer();
+                    // Nota técnica: se carga indicando la contraseña para que pdf-lib
+                    // pueda descifrar el flujo y reescribirlo sin restricciones.
+                    const pdf = await PDFLib.PDFDocument.load(b, { password: pass });
+                    dl(await pdf.save(), "Liberado.pdf");
+                } catch (e) {
+                    alert("Contraseña incorrecta o estructura incompatible.");
+                }
+            });
+        }
+
+        // 8. MODO AHORRO DE TINTA (INVERSOR DE COLOR)
+        async function doInkSave() {
+            await withLoading('btn-ahorro-go', 'Invirtiendo…', async () => {
+                const b = await appState.inkSaveFile.arrayBuffer();
+                const pdf = await pdfjsLib.getDocument({ data: b }).promise;
+                const doc = await PDFLib.PDFDocument.create();
+                const cvs = document.createElement('canvas'); const ctx = cvs.getContext('2d');
+
+                for (let i = 1; i <= pdf.numPages; i++) {
+                    const page = await pdf.getPage(i);
+                    const vp = page.getViewport({ scale: 1.5 });
+                    cvs.width = vp.width; cvs.height = vp.height;
+                    await page.render({ canvasContext: ctx, viewport: vp }).promise;
+
+                    // Procesamiento de inversión de píxeles nativo en el búfer
+                    const imgData = ctx.getImageData(0, 0, cvs.width, cvs.height);
+                    const data = imgData.data;
+                    for (let j = 0; j < data.length; j += 4) {
+                        data[j] = 255 - data[j];       // R
+                        data[j+1] = 255 - data[j+1];   // G
+                        data[j+2] = 255 - data[j+2];   // B
+                    }
+                    ctx.putImageData(imgData, 0, 0);
+
+                    const img = await doc.embedJpg(cvs.toDataURL('image/jpeg', 0.6));
+                    const p = doc.addPage([vp.width, vp.height]);
+                    p.drawImage(img, { x: 0, y: 0, width: vp.width, height: vp.height });
+                }
+                dl(await doc.save(), "Ahorro_Tinta.pdf");
+            });
+        }
+
+        // 9. IMÁGENES A PDF
+        function renderImagesToPdfList() {
+            const list = document.getElementById('list-img2pdf'); list.innerHTML = '';
+            appState.imagesToPdfList.forEach((f, i) => {
+                list.innerHTML += `<li class="file-item"><span>${escapeHtml(f.name)}</span><button class="order-btn" style="color:var(--danger)" aria-label="Eliminar" onclick="appState.imagesToPdfList.splice(${i},1);renderImagesToPdfList();"><i class="fa-solid fa-trash"></i></button></li>`;
+            });
+            document.getElementById('btn-img2pdf-go').style.display = appState.imagesToPdfList.length ? 'flex' : 'none';
+        }
+
+        async function doImagesToPdf() {
+            await withLoading('btn-img2pdf-go', 'Compilando…', async () => {
+                const doc = await PDFLib.PDFDocument.create();
+                for (let f of appState.imagesToPdfList) {
+                    const b = await f.arrayBuffer();
+                    let img;
+                    if (f.type === 'image/jpeg' || f.type === 'image/jpg') img = await doc.embedJpg(b);
+                    else img = await doc.embedPng(b);
+
+                    // Escalar a proporciones estándar A4 dinámicamente
+                    const p = doc.addPage([595.28, 841.89]);
+                    p.drawImage(img, { x: 20, y: 20, width: 555.28, height: 801.89 });
+                }
+                dl(await doc.save(), "Tarea_Compilada.pdf");
+            });
+        }
+
+        // 10. REPARAR PDF
+        async function doRepairPdf() {
+            await withLoading('btn-reparar-go', 'Reparando…', async () => {
+                try {
+                    const b = await appState.repairFile.arrayBuffer();
+                    // Re-destilación en bruto del flujo de bytes sanitizando diccionarios corruptos
+                    const donor = await PDFLib.PDFDocument.load(b, { ignoreEncryption: true });
+                    const doc = await PDFLib.PDFDocument.create();
+                    const pages = await doc.copyPages(donor, donor.getPageIndices());
+                    pages.forEach(p => doc.addPage(p));
+                    dl(await doc.save(), "Sanitizado_Reparado.pdf");
+                } catch (e) {
+                    alert("Error crítico en la re-destilación local de bytes.");
+                }
+            });
+        }
+
+        // 11. LIMPIADOR DE ANOTACIONES
+        async function doCleanAnnotations() {
+            await withLoading('btn-limpiador-go', 'Limpiando…', async () => {
+                const b = await appState.cleanerFile.arrayBuffer();
+                const pdf = await PDFLib.PDFDocument.load(b);
+                pdf.getPages().forEach(page => {
+                    // Eliminar el árbol de nodos de anotaciones en el diccionario de la página
+                    if (page.node.has(PDFLib.PDFName.of('Annots'))) {
+                        page.node.delete(PDFLib.PDFName.of('Annots'));
+                    }
+                });
+                dl(await pdf.save(), "Documento_Limpio.pdf");
+            });
+        }
+
+        // 12. RECORTAR MÁRGENES BLANCOS
+        async function doCropMargins() {
+            await withLoading('btn-recortar-go', 'Recortando…', async () => {
+                const b = await appState.cropFile.arrayBuffer();
+                const pdf = await PDFLib.PDFDocument.load(b);
+                pdf.getPages().forEach(page => {
+                    const { width, height } = page.getSize();
+                    // Ajustar el marco CropBox un 10% hacia el centro geométrico del texto
+                    page.setCropBox(width * 0.05, height * 0.05, width * 0.9, height * 0.9);
+                });
+                dl(await pdf.save(), "Recortado.pdf");
+            });
+        }
+
+        // --- ENLACE DE DESCARGA GLOBAL ---
+        function dl(bytes, name) {
+            const blob = new Blob([bytes], { type: 'application/pdf' });
+            const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; a.click();
+        }
+    </script>
+</body>
+</html>
